@@ -78,6 +78,22 @@ Plug 'mattn/emmet-vim'  " HTML
 " WARNING: this currently assumes nvim
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+" Markdown rendering
+Plug 'MeanderingProgrammer/render-markdown.nvim'
+
+" plugins for the lsp-zero (Neovim only)
+if has('nvim')
+  Plug 'VonHeikemen/lsp-zero.nvim'
+  Plug 'williamboman/mason.nvim'
+  Plug 'williamboman/mason-lspconfig.nvim'
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'L3MON4D3/LuaSnip'
+  Plug 'onsails/lspkind.nvim'
+  Plug 'ibhagwan/fzf-lua'
+endif
+
 " aeshtetics {{{2
 
 " NOTE: will need 'powerline' font for UNICODE symbols;
@@ -88,6 +104,7 @@ so $PLUGDIR/airline.vim
 so $PLUGDIR/rainbow.vim
 so $PLUGDIR/colorschemes.vim
 Plug 'junegunn/goyo.vim'
+Plug 'gmist/vim-palette'
 
 " hide the vertical bar in vsplit
 "hi VertSplit guibg=bg guifg=bg
@@ -118,7 +135,7 @@ set matchpairs+=<:>
 
 " content display
 set foldlevelstart=0
-set list
+set nolist
 set listchars=tab:»·,trail:·,extends:»,precedes:«
 
 " history persistence
@@ -245,13 +262,13 @@ endif
 "   - sonokai
 "   - candy
 
-set bg=dark
+set bg=light
 "colorscheme gruvbox
 "colorscheme strange
 "colorscheme BusyBee
-colorscheme molokai
+"colorscheme molokai
 "colorscheme fine_blue
-"colorscheme pyte
+colorscheme pyte
 
 syntax enable
 
@@ -291,6 +308,12 @@ set cocu=n
 " Fix for Vim in kitty
 " See: https://github.com/kovidgoyal/kitty/issues/108
 let &t_ut=''
+
+" Try Joe's LSP setup
+if has('nvim')
+  lua require("lspzero")
+endif
+
 
 " }}}1
 " vim:fdm=marker:
