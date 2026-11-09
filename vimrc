@@ -311,7 +311,9 @@ let &t_ut=''
 
 " Try Joe's LSP setup
 if has('nvim')
-  lua require("lspzero")
+  " Load only if lspzero.lua exists on this machine; if it exists but fails,
+  " the error is still shown.
+  lua if #vim.api.nvim_get_runtime_file("lua/lspzero.lua", false) > 0 then require("lspzero") end
 endif
 
 
